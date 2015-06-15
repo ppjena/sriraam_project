@@ -20,13 +20,15 @@ public class BookDAO {
 		String sqlQuery = "insert into library_record (name_of_book,author,issue_time) values (?,?,?)";
 		try{
 	
-		
+		//pst = conn.prepareStatement(sqlQuery,PreparedStatement.RETURN_GENERATED_KEYS);
 		pst = conn.prepareStatement(sqlQuery);
 		pst.setString(1, bean.getName());
 		pst.setString(2, bean.getAuthor());
-		pst.setDate(3, (java.sql.Date) bean.getIssue_date_time());
+		pst.setString(3, ""+bean.getIssue_date_time());
 		
 		pst.executeUpdate();
+		
+		
 		
 		}
 		
