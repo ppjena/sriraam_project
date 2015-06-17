@@ -12,13 +12,14 @@ import dao.BookDAO;
 
 public class InputParser {
 	
-	private static String bookName;
-	private static String author;
-	private static Date issueTime;
 
 	private static Scanner in;
 	
 	public BookBean generateParsedInput() throws ParseException{
+		
+		  String bookName;
+		  String author;
+		  Date issueTime; 
 		
 		in = new Scanner(System.in);
 		System.out.println("Enter Book Name");

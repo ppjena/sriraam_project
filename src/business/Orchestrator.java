@@ -32,6 +32,7 @@ public class Orchestrator {
 		catch (ParseException e)
 		{
 			e.printStackTrace();
+			return;
 		}
 		
 		
@@ -41,6 +42,7 @@ public class Orchestrator {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return;
 		}
 		
 		
