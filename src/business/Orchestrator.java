@@ -1,46 +1,50 @@
-/*
- * Takes in input from the user(book name, author and issue time) 
- * and passes these values to input parser so as to add the 
- * record to the library database.
- */
-
 package business;
 
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
+import bean.BookBean;
+import dao.BookDAO;
+
+
+/*
+ * Calls the input parser which takes in input from the
+ *  user(book name, author and issue time) and then 
+ *  passes the bean to the DAO which adds the record
+ *  to the library database.
+ */
+
 public class Orchestrator {
 
-	private static String bookName;
-	private static String author;
-	private static Date issueTime;
 	
-	private static Scanner in;
 
 	public static void main(String args[]){
 		
-		in = new Scanner(System.in);
-		System.out.println("Enter Book Name");
-		bookName = in.nextLine();
+		BookBean bookBean = null;
+		InputParser inputParser = new InputParser();
+		try{
+			bookBean= inputParser.generateParsedInput();
+		}
+		catch (ParseException e)
+		{
+			e.printStackTrace();
+		}
 		
-		System.out.println("Enter Author Name");
-		author = in.nextLine();
 		
-		System.out.println("Enter time of issue in yyyy-MM-dd format");
-		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		BookDAO daoForAddingBook = new BookDAO();
 		try {
-			issueTime = format.parse(in.nextLine());
-		} catch (ParseException e) {
+			daoForAddingBook.addBookToLibrary(bookBean);
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		
-			Input_Parser inputParser = new Input_Parser();
-			inputParser.generateParsedInput(bookName, author, issueTime);
+			
 	}
 	
 
