@@ -1,45 +1,41 @@
 package business;
 
-import java.sql.SQLException;
+import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
-import bean.BookBean;
-import dao.BookDAO;
+import bean.Book;
 
 public class InputParser {
-	
 
-	private static Scanner in;
-	
-	public BookBean generateParsedInput() throws ParseException{
-		
-		  String bookName;
-		  String author;
-		  Date issueTime; 
-		
-		in = new Scanner(System.in);
+	// dependency injection
+	public Book generateParsedInput(InputStream inputStream)
+			throws ParseException {
+		Scanner in = new Scanner(inputStream);
 		System.out.println("Enter Book Name");
-		bookName = in.nextLine();
-		
+		String bookName = in.nextLine();
+
 		System.out.println("Enter Author Name");
-		author = in.nextLine();
-		
+		String author = in.nextLine();
+
 		System.out.println("Enter time of issue in yyyy-MM-dd format");
 		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		
-		issueTime = format.parse(in.nextLine());
-		
-		BookBean bookBean = new BookBean();
+
+		Date issueTime = format.parse(in.nextLine());
+		return createBookInstance(bookName, author, issueTime);
+	}
+
+	protected Book createBookInstance(String bookName, String author,
+			Date issueTime) {
+		Book bookBean = new Book();
 		bookBean.setName(bookName);
 		bookBean.setAuthor(author);
 		bookBean.setIssue_date_time(issueTime);
-		
+
 		return bookBean;
-		
 	}
 
 }

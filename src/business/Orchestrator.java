@@ -1,15 +1,12 @@
 package business;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.SQLException;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Scanner;
 
-import bean.BookBean;
+import bean.Book;
 import dao.BookDAO;
-
 
 /*
  * Calls the input parser which takes in input from the
@@ -20,34 +17,15 @@ import dao.BookDAO;
 
 public class Orchestrator {
 
-	
-
-	public static void main(String args[]){
-		
-		BookBean bookBean = null;
-		InputParser inputParser = new InputParser();
-		try{
-			bookBean= inputParser.generateParsedInput();
-		}
-		catch (ParseException e)
-		{
-			e.printStackTrace();
-			return;
-		}
-		
-		
-		BookDAO daoForAddingBook = new BookDAO();
-		try {
-			daoForAddingBook.addBookToLibrary(bookBean);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return;
-		}
-		
-		
-			
+	public static void main(String args[]) throws ParseException, SQLException, IOException {
+		mainWithDepencies(System.in, new BookDAO());
 	}
-	
 
+	// mocking
+	protected static void mainWithDepencies(InputStream inputStream,
+			BookDAO daoForAddingBook) throws ParseException, SQLException, IOException {
+		InputParser inputParser = new InputParser();
+		Book bookBean = inputParser.generateParsedInput(inputStream);
+		daoForAddingBook.addBookToLibrary(bookBean);
+	}
 }

@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="tst"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="lib" path="C:/Users/pragyan/OneDrive/Documents/work_graduate/com.mysql.jdbc_5.1.5.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="C:/Users/pragyan/Downloads/easymock-3.3.1/easymock-3.3.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/pragyan/Downloads/objenesis-2.1/objenesis-2.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/pragyan/Downloads/cglib-2.2.jar/cglib-2.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/pragyan/Downloads/asm-3.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

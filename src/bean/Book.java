@@ -2,16 +2,11 @@ package bean;
 
 import java.util.Date;
 
-public class BookBean {
+public class Book {
 	
-	private int id;
 	private String name;
 	private String author;
 	private Date issue_date_time;
-	
-	public int getId() {
-		return id;
-	}
 	
 	public String getName() {
 		return name;
