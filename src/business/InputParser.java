@@ -7,13 +7,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
-import dao.DAOException;
+import utilities.CustomException;
 import bean.Book;
 
 public class InputParser {
 
 	// dependency injection
-	public Book generateParsedInput(InputStream inputStream) throws DAOException
+	public Book generateParsedInput(InputStream inputStream) throws CustomException
 			 {
 		Scanner in = new Scanner(inputStream);
 		System.out.println("Enter Book Name");
@@ -31,7 +31,7 @@ public class InputParser {
 		}
 		catch(ParseException ex)
 		{
-			throw(new DAOException(ex));
+			throw(new CustomException(ex));
 		}
 		return createBookInstance(bookName, author, issueTime);
 		

@@ -3,6 +3,7 @@ package dao;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import utilities.CustomException;
 import bean.Book;
 
 public class BookFileDAO implements BookDAO{
@@ -15,7 +16,7 @@ public class BookFileDAO implements BookDAO{
 	}
 	
 	
-	public void addBookToLibrary(Book bean) throws DAOException
+	public void addBookToLibrary(Book bean) throws CustomException
 	{
 
 		try{
@@ -25,7 +26,7 @@ public class BookFileDAO implements BookDAO{
 		}
 		catch(IOException ex)
 		{
-			throw(new DAOException(ex));
+			throw(new CustomException(ex));
 		}
 		
 	}

@@ -9,14 +9,14 @@ import java.util.GregorianCalendar;
 import org.easymock.EasyMock;
 import org.junit.Test;
 
+import utilities.CustomException;
 import bean.Book;
 import dao.BookFileDAO;
-import dao.DAOException;
 
 public class OrchestratorTest {
 
 	@Test
-	public void testMainWithDependencies() throws DAOException {
+	public void testMainWithDependencies() throws CustomException {
 		String input = "bname\naname\n2012-01-01\n";
 		InputStream is = new ByteArrayInputStream(input.getBytes());
 		

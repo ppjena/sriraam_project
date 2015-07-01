@@ -4,12 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import utilities.CustomException;
 import bean.Book;
 import connection.ConnectionManager;
 
 public class BookDataBaseDAO implements BookDAO{
 	
-	public void addBookToLibrary(Book bean) throws DAOException
+	public void addBookToLibrary(Book bean) throws CustomException
 	{
 		Connection conn = ConnectionManager.getConnection();
 		PreparedStatement pst = null;
@@ -40,7 +41,7 @@ public class BookDataBaseDAO implements BookDAO{
 				pst.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
-				throw(new DAOException(e));
+				throw(new CustomException(e));
 			}
 	    	
 	    	
