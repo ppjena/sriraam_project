@@ -1,12 +1,13 @@
 package business;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.SQLException;
-import java.text.ParseException;
 
 import bean.Book;
-import dao.BookDAO;
+import dao.BookFileDAO;
+import dao.DAOException;
 
 /*
  * Calls the input parser which takes in input from the
@@ -17,13 +18,23 @@ import dao.BookDAO;
 
 public class Orchestrator {
 
-	public static void main(String args[]) throws ParseException, SQLException, IOException {
-		mainWithDepencies(System.in, new BookDAO());
+	public static void main(String args[]) throws DAOException {
+		File file = new File("C:\\Users\\pragyan\\Desktop\\dir","library_record.txt");
+		Boolean append = true;
+		try{
+		FileWriter fileWriter = new FileWriter(file,append);
+		mainWithDepencies(System.in, new BookFileDAO(fileWriter));
+		fileWriter.flush();
+		fileWriter.close();
+		}
+		catch(IOException ex){
+			throw(new DAOException(ex));
+		}
 	}
 
 	// mocking
 	protected static void mainWithDepencies(InputStream inputStream,
-			BookDAO daoForAddingBook) throws ParseException, SQLException, IOException {
+			BookFileDAO daoForAddingBook) throws DAOException {
 		InputParser inputParser = new InputParser();
 		Book bookBean = inputParser.generateParsedInput(inputStream);
 		daoForAddingBook.addBookToLibrary(bookBean);

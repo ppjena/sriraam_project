@@ -7,13 +7,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
+import dao.DAOException;
 import bean.Book;
 
 public class InputParser {
 
 	// dependency injection
-	public Book generateParsedInput(InputStream inputStream)
-			throws ParseException {
+	public Book generateParsedInput(InputStream inputStream) throws DAOException
+			 {
 		Scanner in = new Scanner(inputStream);
 		System.out.println("Enter Book Name");
 		String bookName = in.nextLine();
@@ -24,8 +25,18 @@ public class InputParser {
 		System.out.println("Enter time of issue in yyyy-MM-dd format");
 		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
-		Date issueTime = format.parse(in.nextLine());
+		Date issueTime = null;
+		try{
+			issueTime = format.parse(in.nextLine());
+		}
+		catch(ParseException ex)
+		{
+			throw(new DAOException(ex));
+		}
 		return createBookInstance(bookName, author, issueTime);
+		
+		
+		
 	}
 
 	protected Book createBookInstance(String bookName, String author,
