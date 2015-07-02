@@ -1,9 +1,8 @@
 package dao;
 
-import utilities.CustomException;
 import bean.Book;
 
 public interface BookDAO {
 
-	public void addBookToLibrary(Book bean) throws CustomException; 
+	public void addBookToLibrary(Book bean) throws DAOException; 
 }

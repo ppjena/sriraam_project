@@ -7,13 +7,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
-import utilities.CustomException;
 import bean.Book;
 
 public class InputParser {
 
 	// dependency injection
-	public Book generateParsedInput(InputStream inputStream) throws CustomException
+	public Book generateParsedInput(InputStream inputStream) throws ParseException
 			 {
 		Scanner in = new Scanner(inputStream);
 		System.out.println("Enter Book Name");
@@ -25,14 +24,7 @@ public class InputParser {
 		System.out.println("Enter time of issue in yyyy-MM-dd format");
 		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
-		Date issueTime = null;
-		try{
-			issueTime = format.parse(in.nextLine());
-		}
-		catch(ParseException ex)
-		{
-			throw(new CustomException(ex));
-		}
+		Date issueTime = format.parse(in.nextLine());
 		return createBookInstance(bookName, author, issueTime);
 		
 		

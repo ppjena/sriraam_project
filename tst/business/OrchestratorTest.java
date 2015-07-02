@@ -2,6 +2,7 @@ package business;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -9,14 +10,14 @@ import java.util.GregorianCalendar;
 import org.easymock.EasyMock;
 import org.junit.Test;
 
-import utilities.CustomException;
 import bean.Book;
 import dao.BookFileDAO;
+import dao.DAOException;
 
 public class OrchestratorTest {
 
 	@Test
-	public void testMainWithDependencies() throws CustomException {
+	public void testMainWithDependencies() throws ParseException, DAOException {
 		String input = "bname\naname\n2012-01-01\n";
 		InputStream is = new ByteArrayInputStream(input.getBytes());
 		

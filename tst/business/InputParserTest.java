@@ -2,6 +2,7 @@ package business;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -9,7 +10,7 @@ import java.util.GregorianCalendar;
 import org.junit.Assert;
 import org.junit.Test;
 
-import utilities.CustomException;
+import dao.DAOException;
 import bean.Book;
 
 public class InputParserTest {
@@ -25,7 +26,7 @@ public class InputParserTest {
 	}
 
 	@Test
-	public void testGenerateInput() throws CustomException {
+	public void testGenerateInput() throws ParseException {
 		String input = "bname\naname\n2012-01-01\n";
 		InputStream is = new ByteArrayInputStream(input.getBytes());
 		Book book = new InputParser().generateParsedInput(is);

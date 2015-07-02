@@ -4,10 +4,11 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.ParseException;
 
-import utilities.CustomException;
 import bean.Book;
 import dao.BookFileDAO;
+import dao.DAOException;
 
 /*
  * Calls the input parser which takes in input from the
@@ -18,7 +19,7 @@ import dao.BookFileDAO;
 
 public class Orchestrator {
 
-	public static void main(String args[]) throws CustomException {
+	public static void main(String args[]) throws ParseException, DAOException {
 		File file = new File("C:\\Users\\pragyan\\Desktop\\dir","library_record.txt");
 		Boolean append = true;
 		try{
@@ -28,13 +29,13 @@ public class Orchestrator {
 		fileWriter.close();
 		}
 		catch(IOException ex){
-			throw(new CustomException(ex));
+			throw(new DAOException(ex));
 		}
 	}
 
 	// mocking
 	protected static void mainWithDepencies(InputStream inputStream,
-			BookFileDAO daoForAddingBook) throws CustomException {
+			BookFileDAO daoForAddingBook) throws ParseException, DAOException {
 		InputParser inputParser = new InputParser();
 		Book bookBean = inputParser.generateParsedInput(inputStream);
 		daoForAddingBook.addBookToLibrary(bookBean);
